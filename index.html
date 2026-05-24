@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Educação para o Consumo Consciente - Aprenda sobre sustentabilidade, reciclagem, reutilização e dicas práticas para reduzir seu impacto ambiental.">
+    <meta name="keywords" content="consumo consciente, sustentabilidade, reciclagem, reutilização, meio ambiente, educação ambiental">
+    <meta name="author" content="Projeto Educacional">
+    <meta property="og:title" content="Educação para o Consumo Consciente">
+    <meta property="og:description" content="Transforme hábitos, preserve o futuro - sustentabilidade e responsabilidade social">
+    <meta property="og:type" content="website">
     <title>Educação para o Consumo Consciente | Sustentabilidade e Responsabilidade</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -14,23 +21,56 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #eef5ea 0%, #d9e6d3 100%);
-            color: #1a2e1f;
-            line-height: 1.5;
-            scroll-behavior: smooth;
+        /* Variáveis para tema claro/escuro */
+        :root {
+            --bg-primary: linear-gradient(145deg, #eef5ea 0%, #d9e6d3 100%);
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --text-primary: #1a2e1f;
+            --text-secondary: #2d4a2e;
+            --header-bg: linear-gradient(135deg, #1b4d2e 0%, #0f3b23 100%);
+            --nav-bg: rgba(255,255,245,0.96);
+            --border-color: rgba(74, 128, 78, 0.2);
+            --shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+            --btn-bg: #2e7d46;
+            --btn-hover: #1e5a36;
+            --footer-bg: #102e1a;
+            --accent: #49a36b;
         }
 
-        /* Glassmorphism + moderna */
+        body.dark {
+            --bg-primary: linear-gradient(145deg, #1a2a1a 0%, #0e1a0e 100%);
+            --bg-card: rgba(30, 40, 28, 0.95);
+            --text-primary: #e8f0e5;
+            --text-secondary: #b8d9b0;
+            --header-bg: linear-gradient(135deg, #0a2a1a 0%, #051a0e 100%);
+            --nav-bg: rgba(20, 30, 18, 0.96);
+            --border-color: rgba(100, 150, 90, 0.3);
+            --shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.4);
+            --btn-bg: #3a9156;
+            --btn-hover: #2a6d42;
+            --footer-bg: #051a0e;
+            --accent: #6bbd82;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header */
         .header-moderno {
-            background: linear-gradient(135deg, #1b4d2e 0%, #0f3b23 100%);
+            background: var(--header-bg);
             color: white;
             padding: 3rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
             box-shadow: 0 15px 25px -12px rgba(0,0,0,0.2);
+            transition: background 0.3s ease;
         }
 
         .header-moderno::before {
@@ -63,25 +103,49 @@
             margin: 0 auto;
         }
 
-        /* NAVBAR estilizada */
+        /* Navbar com hambúrguer */
         .nav-wrapper {
-            background: rgba(255,255,245,0.96);
+            background: var(--nav-bg);
             backdrop-filter: blur(8px);
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            border-bottom: 1px solid rgba(74, 128, 78, 0.2);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease;
         }
 
-        .nav-scroll {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.3rem;
+            justify-content: space-between;
+            align-items: center;
             padding: 0.8rem 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--btn-bg);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+
+        .menu-toggle:hover {
+            background: var(--btn-hover);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
         }
 
         .nav-btn {
@@ -91,7 +155,7 @@
             font-family: 'Inter', sans-serif;
             font-weight: 600;
             font-size: 0.95rem;
-            color: #1e4620;
+            color: var(--text-secondary);
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -99,12 +163,30 @@
         }
 
         .nav-btn:hover {
-            background: #e0f0dd;
-            color: #0a3217;
+            background: var(--accent);
+            color: white;
             transform: translateY(-2px);
         }
 
-        /* CONTAINER PRINCIPAL */
+        /* Botão modo escuro */
+        .theme-toggle {
+            background: var(--btn-bg);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+
+        .theme-toggle:hover {
+            background: var(--btn-hover);
+            transform: scale(1.02);
+        }
+
+        /* Container principal */
         .container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -135,8 +217,8 @@
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 1.8rem;
-            color: #1e4d2a;
-            border-left: 7px solid #49a36b;
+            color: var(--accent);
+            border-left: 7px solid var(--accent);
             padding-left: 1.2rem;
             letter-spacing: -0.3px;
         }
@@ -149,19 +231,26 @@
         }
 
         .card-modern {
-            background: rgba(255, 255, 255, 0.92);
+            background: var(--bg-card);
             backdrop-filter: blur(2px);
             border-radius: 32px;
             padding: 1.8rem;
-            box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,240,0.7);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+        }
+
+        .card-modern.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .card-modern:hover {
             transform: translateY(-8px);
             box-shadow: 0 25px 35px -14px rgba(0, 0, 0, 0.2);
-            background: white;
         }
 
         .icon-xl {
@@ -171,21 +260,14 @@
         }
 
         .badge {
-            background: #deefda;
-            color: #1a4d2a;
+            background: var(--accent);
+            color: white;
             border-radius: 60px;
             padding: 0.25rem 0.9rem;
             font-size: 0.8rem;
             font-weight: 600;
             display: inline-block;
             margin-bottom: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #2c7840;
-            margin-right: 0.5rem;
         }
 
         .list-custom {
@@ -205,8 +287,104 @@
             font-size: 1.2rem;
         }
 
+        .infografico {
+            background: var(--bg-card);
+            border-radius: 32px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Quiz e calculadora */
+        .quiz-container, .calculator-container {
+            background: var(--bg-card);
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .quiz-option {
+            display: block;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-pequeno {
+            background: var(--btn-bg);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+            margin-top: 0.5rem;
+        }
+
+        .btn-pequeno:hover {
+            background: var(--btn-hover);
+            transform: scale(0.97);
+        }
+
+        /* Botão voltar ao topo */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--btn-bg);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--btn-hover);
+            transform: scale(1.1);
+        }
+
+        /* Barra de progresso */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--accent);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
         footer {
-            background: #102e1a;
+            background: var(--footer-bg);
             color: #dbefd4;
             text-align: center;
             padding: 2rem;
@@ -214,110 +392,81 @@
             border-top-left-radius: 28px;
             border-top-right-radius: 28px;
             font-size: 0.9rem;
+            transition: background 0.3s ease;
         }
 
-        /* gráfico simbólico e elementos extras */
-        .infografico {
-            background: #f8fff4;
-            border-radius: 32px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-            border: 1px solid #c8e6c0;
-        }
-
-        .progress-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: space-between;
-            margin: 1.2rem 0;
-        }
-
-        .progress-item {
-            flex: 1;
-            background: #e2f0dd;
-            border-radius: 40px;
-            padding: 0.5rem 1rem;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .btn-pequeno {
-            background: #2e7d46;
-            border: none;
-            color: white;
-            padding: 8px 18px;
-            border-radius: 60px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.2s;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-pequeno:hover {
-            background: #1e5a36;
-            transform: scale(0.97);
-        }
-
-        hr {
-            margin: 1rem 0;
-            border: none;
-            height: 2px;
-            background: linear-gradient(to right, #c6e2bb, transparent);
-        }
-
-        @media (max-width: 700px) {
+        /* Responsivo */
+        @media (max-width: 768px) {
             .header-moderno h1 {
                 font-size: 1.9rem;
             }
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+            }
+            .nav-links.open {
+                display: flex;
+            }
             .nav-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem;
             }
             h2 {
                 font-size: 1.6rem;
             }
         }
-    </style>
-    <script>
-        function showPage(id) {
-            // Oculta todas as páginas
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            // Ativa a página selecionada
-            const targetPage = document.getElementById(id);
-            if (targetPage) targetPage.classList.add('active');
-            // Rola suavemente para o topo do container (opcional)
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem 2rem;
+            }
+            .card-modern {
+                padding: 1.2rem;
+            }
         }
 
-        // Inicializar na introdução e pequeno efeito de dados dinâmicos
-        document.addEventListener('DOMContentLoaded', () => {
-            showPage('introducao');
-            // atualiza contadores pequenos simulando dados (apenas estético)
-            const counters = document.querySelectorAll('.stat-counter');
-            if (counters.length) {
-                counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute('data-target')) || 0;
-                    let current = 0;
-                    const step = Math.ceil(target / 30);
-                    const update = () => {
-                        current += step;
-                        if (current >= target) {
-                            counter.innerText = target.toLocaleString();
-                        } else {
-                            counter.innerText = current.toLocaleString();
-                            requestAnimationFrame(update);
-                        }
-                    };
-                    update();
-                });
-            }
-        });
-    </script>
+        /* Animações */
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            background: #25D366;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .share-btn:hover {
+            transform: scale(1.05);
+        }
+
+        input, select {
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+        }
+    </style>
 </head>
 <body>
+
+<div class="progress-bar" id="progressBar"></div>
 
 <header class="header-moderno">
     <h1>🌱 Educação para o Consumo Consciente</h1>
@@ -325,52 +474,47 @@
 </header>
 
 <div class="nav-wrapper">
-    <div class="nav-scroll">
-        <button class="nav-btn" onclick="showPage('introducao')">📘 Introdução</button>
-        <button class="nav-btn" onclick="showPage('consumo')">🛒 Consumo Consciente</button>
-        <button class="nav-btn" onclick="showPage('reutilizacao')">🔄 Reutilização</button>
-        <button class="nav-btn" onclick="showPage('reciclagem')">♻️ Reciclagem</button>
-        <button class="nav-btn" onclick="showPage('dicas')">💡 Dicas Práticas</button>
-        <button class="nav-btn" onclick="showPage('conclusao')">🌎 Conclusão</button>
-        <button class="nav-btn" onclick="showPage('referencias')">📚 Referências</button>
+    <div class="nav-container">
+        <button class="menu-toggle" id="menuToggle">☰ Menu</button>
+        <div class="nav-links" id="navLinks">
+            <button class="nav-btn" onclick="showPage('introducao')">📘 Introdução</button>
+            <button class="nav-btn" onclick="showPage('consumo')">🛒 Consumo Consciente</button>
+            <button class="nav-btn" onclick="showPage('reutilizacao')">🔄 Reutilização</button>
+            <button class="nav-btn" onclick="showPage('reciclagem')">♻️ Reciclagem</button>
+            <button class="nav-btn" onclick="showPage('dicas')">💡 Dicas</button>
+            <button class="nav-btn" onclick="showPage('quiz')">❓ Quiz</button>
+            <button class="nav-btn" onclick="showPage('conclusao')">🌎 Conclusão</button>
+            <button class="nav-btn" onclick="showPage('referencias')">📚 Referências</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle">🌙 Escuro</button>
     </div>
 </div>
 
 <div class="container">
-    <!-- INTRODUÇÃO melhorada -->
+    <!-- INTRODUÇÃO -->
     <div id="introducao" class="page">
         <h2>🌍 Introdução: O poder da escolha consciente</h2>
         <div class="card-grid">
             <div class="card-modern">
                 <div class="icon-xl">📉</div>
                 <span class="badge">Dados globais</span>
-                <p>Mais de <span class="stat-number">2,1 bilhões</span> de toneladas de resíduos sólidos são geradas anualmente no mundo. Destas, apenas <strong>13,5%</strong> são recicladas (Banco Mundial).</p>
-                <hr>
+                <p>Mais de <strong>2,1 bilhões</strong> de toneladas de resíduos sólidos são geradas anualmente no mundo. Destas, apenas <strong>13,5%</strong> são recicladas.</p>
                 <p>A educação para o consumo consciente desponta como ferramenta transformadora, reduzindo pegada ecológica e promovendo justiça ambiental.</p>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">🧠</div>
                 <span class="badge">Por que ensinar?</span>
                 <p>Decisões de compra impactam cadeias produtivas, emissões de CO₂, uso de água e trabalho digno. Consumir com consciência gera ciclos positivos.</p>
-                <div class="progress-container" style="margin-top: 1rem;">
-                    <div class="progress-item">🌎 Redução de lixo</div>
-                    <div class="progress-item">💧 Economia hídrica</div>
-                    <div class="progress-item">🌿 Florestas preservadas</div>
-                </div>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">🎯</div>
                 <span class="badge">ODS 12</span>
                 <p><strong>Consumo e produção responsáveis</strong> — meta da ONU até 2030. Cada pequeno gesto soma para um futuro regenerativo.</p>
-                <button class="btn-pequeno" onclick="showPage('dicas')">Ver dicas →</button>
             </div>
-        </div>
-        <div class="infografico">
-            <p style="font-weight: 600;">📢 Você sabia? Se cada brasileiro reduzisse o desperdício de alimentos em 20%, evitaríamos 3 milhões de toneladas de CO₂ por ano.</p>
         </div>
     </div>
 
-    <!-- CONSUMO CONSCIENTE + aprofundamento -->
+    <!-- CONSUMO CONSCIENTE -->
     <div id="consumo" class="page">
         <h2>🛒 Consumo Consciente: repensar, reduzir, responsabilizar</h2>
         <div class="card-grid">
@@ -382,56 +526,50 @@
                     <li>Qual é a origem e impacto ambiental?</li>
                     <li>Posso compartilhar, alugar ou comprar usado?</li>
                 </ul>
-                <p><strong>Consumismo</strong>: impulsiona extração predatória, geração de lixo eletrônico e emissões de gases estufa.</p>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">📦</div>
                 <span class="badge">Pegada invisível</span>
-                <p>Uma calça jeans consome cerca de <strong>7.500 litros</strong> de água desde o cultivo do algodão até a fabricação. Optar por marcas sustentáveis e prolongar a vida útil das roupas é revolucionário.</p>
-                <div class="progress-item" style="background:#cfe8c5;">♻️ Moda circular + slow fashion</div>
+                <p>Uma calça jeans consome cerca de <strong>7.500 litros</strong> de água. Optar por marcas sustentáveis e prolongar a vida útil das roupas é revolucionário.</p>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">🏭</div>
                 <span class="badge">Economia circular</span>
-                <p>Empresas e consumidores alinhados reduzem resíduos, projetam produtos duráveis e fomentam o reparo. Consumir menos, mas melhor.</p>
+                <p>Empresas e consumidores alinhados reduzem resíduos, projetam produtos duráveis e fomentam o reparo.</p>
             </div>
         </div>
     </div>
 
-    <!-- REUTILIZAÇÃO expandida -->
+    <!-- REUTILIZAÇÃO -->
     <div id="reutilizacao" class="page">
         <h2>🔄 Reutilização criativa: do descarte à nova história</h2>
         <div class="card-grid">
             <div class="card-modern">
                 <div class="icon-xl">🏺</div>
                 <span class="badge">DIY & Upcycling</span>
-                <p>Transformar potes de vidro em organizadores, pneus em vasos, caixotes em estantes. A reutilização reduz em até 70% o descarte em aterros.</p>
-                <p><strong>Benefícios:</strong> economia financeira, menos extração de matéria-prima e estímulo à criatividade.</p>
+                <p>Transformar potes de vidro em organizadores, pneus em vasos. A reutilização reduz em até 70% o descarte em aterros.</p>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">👕</div>
                 <span class="badge">Moda Reuse</span>
-                <p>Brechós, trocas de roupas e customização: prolongam a vida útil das peças. <span class="stat-number" data-target="95">95</span>% das roupas descartadas poderiam ser reaproveitadas.</p>
+                <p>Brechós, trocas de roupas e customização: prolongam a vida útil das peças. 95% das roupas descartadas poderiam ser reaproveitadas.</p>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">📦</div>
                 <span class="badge">Embalagens eternas</span>
-                <p>Sacolas de pano, garrafas reutilizáveis, canudos de aço. Evite plástico de uso único: cada pessoa pode economizar até 200 sacolas por ano.</p>
+                <p>Sacolas de pano, garrafas reutilizáveis, canudos de aço. Cada pessoa pode economizar até 200 sacolas por ano.</p>
             </div>
-        </div>
-        <div class="infografico">
-            <p>✨ <strong>Inspiração sustentável:</strong> Móveis de paletes, brinquedos com material reciclado, cadernos com folhas usadas — pequenas ações geram impacto coletivo.</p>
         </div>
     </div>
 
-    <!-- RECICLAGEM com dados importantes -->
+    <!-- RECICLAGEM -->
     <div id="reciclagem" class="page">
         <h2>♻️ Reciclagem: o ciclo virtuoso dos materiais</h2>
         <div class="card-grid">
             <div class="card-modern">
                 <div class="icon-xl">🥤</div>
                 <span class="badge">Alumínio ♻️</span>
-                <p>Reciclar latas de alumínio economiza <strong>95%</strong> de energia em comparação com produção primária. O Brasil é referência com 98% de reciclagem de latas.</p>
+                <p>Reciclar latas de alumínio economiza <strong>95%</strong> de energia. O Brasil recicla 98% das latas.</p>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">📄</div>
@@ -441,28 +579,21 @@
             <div class="card-modern">
                 <div class="icon-xl">🗑️</div>
                 <span class="badge">Coleta seletiva</span>
-                <p>Separe corretamente: azul (papel), vermelho (plástico), verde (vidro), amarelo (metal) e marrom (orgânico). Evite contaminação dos recicláveis.</p>
-                <button class="btn-pequeno" onclick="showPage('dicas')">Guia prático de separação</button>
-            </div>
-        </div>
-        <div class="infografico">
-            <div class="progress-container">
-                <div class="progress-item">📊 30% dos resíduos poderiam ser reciclados mas vão parar em aterros</div>
-                <div class="progress-item">🏭 Reciclagem gera empregos verdes</div>
+                <p>Separe corretamente: azul (papel), vermelho (plástico), verde (vidro), amarelo (metal) e marrom (orgânico).</p>
             </div>
         </div>
     </div>
 
-    <!-- DICAS interativas e completas -->
+    <!-- DICAS + CALCULADORA -->
     <div id="dicas" class="page">
-        <h2>💡 Dicas práticas para o dia a dia sustentável</h2>
+        <h2>💡 Dicas práticas + Calculadora de Pegada</h2>
         <div class="card-grid">
             <div class="card-modern">
                 <div class="icon-xl">🛍️</div>
                 <span class="badge">Planejamento inteligente</span>
                 <ul class="list-custom">
                     <li>Faça lista de compras e evite excessos</li>
-                    <li>Prefira produtos a granel e com embalagens retornáveis</li>
+                    <li>Prefira produtos a granel</li>
                     <li>Leve ecobags e recuse sacolas plásticas</li>
                 </ul>
             </div>
@@ -470,87 +601,246 @@
                 <div class="icon-xl">💧⚡</div>
                 <span class="badge">Casa consciente</span>
                 <ul class="list-custom">
-                    <li>Economize água: reúso da água da chuva para plantas</li>
-                    <li>Desligue aparelhos da tomada (modo stand-by consome 8% da energia)</li>
-                    <li>Troque lâmpadas por LED e reduza até 80% no consumo</li>
-                </ul>
-            </div>
-            <div class="card-modern">
-                <div class="icon-xl">🍎</div>
-                <span class="badge">Combate ao desperdício alimentar</span>
-                <ul class="list-custom">
-                    <li>Aproveite talos, cascas e sementes em receitas criativas</li>
-                    <li>Congele alimentos antes que estraguem</li>
-                    <li>Compre frutas e verduras da estação, mais baratas e com menor pegada</li>
+                    <li>Economize água: reúso da água da chuva</li>
+                    <li>Desligue aparelhos da tomada</li>
+                    <li>Troque lâmpadas por LED</li>
                 </ul>
             </div>
         </div>
-        <div class="card-modern" style="margin-top: 1rem;">
-            <div class="icon-xl">📱</div>
-            <span class="badge">Apps e tecnologias sustentáveis</span>
-            <p>Use aplicativos de doação de comida, troca de objetos, mapas de coleta seletiva. Digitalize recibos, evite impressões e adote o lixo zero.</p>
+
+        <!-- Calculadora de pegada ecológica -->
+        <div class="calculator-container">
+            <h3 style="color: var(--accent);">📊 Calculadora de Pegada Ecológica (simplificada)</h3>
+            <p>Quantas sacolas plásticas você evita por semana?</p>
+            <input type="number" id="sacolasInput" placeholder="Ex: 5" value="3">
+            <button class="btn-pequeno" onclick="calcularEconomia()">Calcular economia anual</button>
+            <p id="resultadoEconomia" style="margin-top: 1rem; font-weight: bold;"></p>
+        </div>
+
+        <div class="share-buttons">
+            <a href="#" class="share-btn" id="shareWhatsApp">📱 Compartilhar no WhatsApp</a>
         </div>
     </div>
 
-    <!-- CONCLUSÃO + inspiração -->
+    <!-- QUIZ INTERATIVO -->
+    <div id="quiz" class="page">
+        <h2>❓ Quiz: Quanto você sabe sobre consumo consciente?</h2>
+        <div class="quiz-container" id="quizContainer">
+            <div id="quizQuestions"></div>
+            <button class="btn-pequeno" id="submitQuiz">Ver resultado</button>
+            <p id="quizResultado" style="margin-top: 1rem; font-weight: bold;"></p>
+        </div>
+    </div>
+
+    <!-- CONCLUSÃO -->
     <div id="conclusao" class="page">
         <h2>🌱 Conclusão: O futuro é construído hoje</h2>
         <div class="card-grid">
             <div class="card-modern">
                 <div class="icon-xl">🤝</div>
                 <p>Pequenas atitudes diárias — como recusar canudos plásticos, consertar eletrônicos e apoiar negócios sustentáveis — geram transformações sistêmicas.</p>
-                <p>Se cada pessoa adotar pelo menos <strong>três práticas conscientes</strong>, evitamos milhões de toneladas de CO₂ por ano.</p>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">🏫</div>
                 <span class="badge">Papel da educação</span>
-                <p>Escolas, universidades e comunidades devem promover debates, hortas orgânicas, feiras de trocas e campanhas de reciclagem. Consciência se multiplica.</p>
+                <p>Escolas, universidades e comunidades devem promover debates, hortas orgânicas, feiras de trocas e campanhas de reciclagem.</p>
             </div>
             <div class="card-modern">
                 <div class="icon-xl">🌟</div>
-                <p><strong>Chamado à ação:</strong> você é agente de mudança. Inspire outras pessoas compartilhando conhecimento. Juntos, rumo a uma economia regenerativa.</p>
-                <button class="btn-pequeno" onclick="showPage('dicas')">Comece agora →</button>
+                <p><strong>Chamado à ação:</strong> você é agente de mudança. Inspire outras pessoas compartilhando conhecimento.</p>
             </div>
-        </div>
-        <div class="infografico" style="text-align: center;">
-            <span style="font-size: 2rem;">🌿 + ♻️ = 🌎</span>
-            <p>Consumo consciente + reciclagem + reutilização = Planeta vivo para as próximas gerações.</p>
         </div>
     </div>
 
-    <!-- REFERÊNCIAS com estilo e fontes confiáveis -->
+    <!-- REFERÊNCIAS -->
     <div id="referencias" class="page">
-        <h2>📚 Referências Bibliográficas & Fontes de Pesquisa</h2>
+        <h2>📚 Referências Bibliográficas</h2>
         <div class="card-grid">
             <div class="card-modern">
                 <span class="badge">📖 Instituições</span>
-                <p>BRASIL. Ministério do Meio Ambiente. <em>Consumo Consciente e Sustentabilidade</em>. Brasília, 2023.</p>
-                <p>ONU Meio Ambiente. <em>Objetivos de Desenvolvimento Sustentável – ODS 12</em>. 2025.</p>
-                <p>INSTITUTO AKATU. <em>Educação para o Consumo Consciente: Guia para Educadores</em>. 7ª ed, 2024.</p>
+                <p>BRASIL. Ministério do Meio Ambiente. Consumo Consciente.</p>
+                <p>ONU Meio Ambiente. ODS 12.</p>
+                <p>INSTITUTO AKATU. Educação para o Consumo Consciente.</p>
             </div>
             <div class="card-modern">
-                <span class="badge">🔬 Dados & pesquisas</span>
-                <p>Banco Mundial. <em>What a Waste 2.0: A Global Snapshot of Solid Waste Management</em>. 2024.</p>
-                <p>ABRELPE. <em>Panorama dos Resíduos Sólidos no Brasil</em>. 2025.</p>
-                <p>Ellen MacArthur Foundation. <em>Economia Circular: Oportunidades para o Brasil</em>. 2024.</p>
+                <span class="badge">🔬 Dados</span>
+                <p>Banco Mundial. What a Waste 2.0.</p>
+                <p>ABRELPE. Panorama dos Resíduos Sólidos.</p>
             </div>
-            <div class="card-modern">
-                <span class="badge">🌐 Normas e portais</span>
-                <p>ABNT NBR ISO 14001: Sistemas de gestão ambiental.</p>
-                <p>Portal eCycle – consumo sustentável e reciclagem.</p>
-                <p>Plataforma Lixo Zero Brasil – Certificação e boas práticas.</p>
-            </div>
-        </div>
-        <div class="infografico" style="margin-top: 1rem;">
-            <p>📌 Trabalho escolar desenvolvido sob orientação de práticas sustentáveis e responsabilidade social. Conteúdo revisado e alinhado à Base Nacional Comum Curricular (BNCC).</p>
         </div>
     </div>
 </div>
+
+<button class="back-to-top" id="backToTop">↑</button>
 
 <footer>
     <p>© 2026 – Projeto Educacional | Educação para o Consumo Consciente 🌱</p>
     <p style="margin-top: 0.6rem; font-size:0.8rem;">Sustentabilidade, inovação social e cidadania planetária — pequenos gestos, grandes transformações.</p>
 </footer>
 
+<script>
+    // Dados do Quiz
+    const quizData = [
+        {
+            question: "Qual a sigla do Objetivo de Desenvolvimento Sustentável relacionado ao consumo consciente?",
+            options: ["ODS 5", "ODS 12", "ODS 15", "ODS 8"],
+            correct: 1
+        },
+        {
+            question: "Reciclar uma lata de alumínio economiza quantos % de energia em comparação com produção primária?",
+            options: ["50%", "75%", "95%", "30%"],
+            correct: 2
+        },
+        {
+            question: "O que é upcycling?",
+            options: ["Reciclagem industrial", "Transformar resíduos em produtos de maior valor", "Queimar lixo", "Compostagem"],
+            correct: 1
+        },
+        {
+            question: "Quantos litros de água são necessários para produzir uma calça jeans?",
+            options: ["1.500L", "3.000L", "7.500L", "10.000L"],
+            correct: 2
+        },
+        {
+            question: "Qual a cor da lixeira para descartar plástico na coleta seletiva?",
+            options: ["Azul", "Verde", "Amarelo", "Vermelho"],
+            correct: 3
+        }
+    ];
+
+    // Renderizar quiz
+    function renderQuiz() {
+        const container = document.getElementById('quizQuestions');
+        if (!container) return;
+        let html = '';
+        quizData.forEach((q, idx) => {
+            html += `<div class="quiz-question">
+                        <p><strong>${idx+1}. ${q.question}</strong></p>`;
+            q.options.forEach((opt, optIdx) => {
+                html += `<label class="quiz-option">
+                            <input type="radio" name="q${idx}" value="${optIdx}"> ${opt}
+                         </label>`;
+            });
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    // Submeter quiz
+    function submitQuiz() {
+        let score = 0;
+        quizData.forEach((q, idx) => {
+            const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+            if (selected && parseInt(selected.value) === q.correct) {
+                score++;
+            }
+        });
+        const resultDiv = document.getElementById('quizResultado');
+        resultDiv.innerHTML = `🎉 Você acertou ${score} de ${quizData.length} perguntas! ${score === 5 ? 'Parabéns, você é expert em sustentabilidade! 🌟' : 'Continue aprendendo, pequenas mudanças fazem a diferença! 🌱'}`;
+    }
+
+    // Calculadora de economia
+    function calcularEconomia() {
+        const sacolas = parseInt(document.getElementById('sacolasInput').value) || 0;
+        const economiaCO2 = sacolas * 52 * 0.05; // 0.05kg CO2 por sacola
+        const resultado = document.getElementById('resultadoEconomia');
+        resultado.innerHTML = `🌍 Evitando ${sacolas} sacolas/semana, você economiza aproximadamente <strong>${economiaCO2.toFixed(2)} kg de CO₂</strong> por ano! Isso equivale a plantar ${Math.floor(economiaCO2 / 5)} árvores. 🌳`;
+    }
+
+    // Compartilhar WhatsApp
+    document.getElementById('shareWhatsApp')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const text = encodeURIComponent("Descubra como ser mais sustentável! Acesse o site Educação para o Consumo Consciente e aprenda dicas incríveis. 🌱");
+        window.open(`https://wa.me/?text=${text}`, '_blank');
+    });
+
+    // Controle de páginas
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        const targetPage = document.getElementById(id);
+        if (targetPage) targetPage.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Se for a página do quiz, renderizar
+        if (id === 'quiz') {
+            renderQuiz();
+            document.getElementById('submitQuiz').onclick = submitQuiz;
+        }
+    }
+
+    // Menu hambúrguer
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+    }
+
+    // Modo escuro
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        const isDark = document.body.classList.contains('dark');
+        themeToggle.textContent = isDark ? '☀️ Claro' : '🌙 Escuro';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Carregar tema salvo
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        themeToggle.textContent = '☀️ Claro';
+    }
+
+    // Botão voltar ao topo
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('show');
+        } else {
+            backToTop.classList.remove('show');
+        }
+        
+        // Barra de progresso
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Animação de scroll para cards
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.card-modern').forEach(card => {
+        observer.observe(card);
+    });
+
+    // Inicializar
+    showPage('introducao');
+    renderQuiz();
+    document.getElementById('submitQuiz').onclick = submitQuiz;
+    
+    // Fechar menu ao clicar em link
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+        });
+    });
+</script>
 </body>
 </html>
