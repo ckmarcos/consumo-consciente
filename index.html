@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Educação para o Consumo Consciente | Sustentabilidade e Responsabilidade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #eef5ea 0%, #d9e6d3 100%);
+            color: #1a2e1f;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism + moderna */
+        .header-moderno {
+            background: linear-gradient(135deg, #1b4d2e 0%, #0f3b23 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 25px -12px rgba(0,0,0,0.2);
+        }
+
+        .header-moderno::before {
+            content: "♻️";
+            font-size: 180px;
+            opacity: 0.08;
+            position: absolute;
+            bottom: -30px;
+            right: -20px;
+            pointer-events: none;
+            transform: rotate(-10deg);
+        }
+
+        .header-moderno h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(120deg, #fff, #c3f0ca);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .header-moderno p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* NAVBAR estilizada */
+        .nav-wrapper {
+            background: rgba(255,255,245,0.96);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(74, 128, 78, 0.2);
+        }
+
+        .nav-scroll {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.3rem;
+            padding: 0.8rem 1.5rem;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            padding: 0.7rem 1.3rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1e4620;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            letter-spacing: -0.2px;
+        }
+
+        .nav-btn:hover {
+            background: #e0f0dd;
+            color: #0a3217;
+            transform: translateY(-2px);
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem 3rem;
+        }
+
+        .page {
+            display: none;
+            animation: fadeUp 0.45s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            color: #1e4d2a;
+            border-left: 7px solid #49a36b;
+            padding-left: 1.2rem;
+            letter-spacing: -0.3px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        .card-modern {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 1.8rem;
+            box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,240,0.7);
+        }
+
+        .card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -14px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+
+        .icon-xl {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .badge {
+            background: #deefda;
+            color: #1a4d2a;
+            border-radius: 60px;
+            padding: 0.25rem 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c7840;
+            margin-right: 0.5rem;
+        }
+
+        .list-custom {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .list-custom li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .list-custom li::before {
+            content: "🌿";
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: #102e1a;
+            color: #dbefd4;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top-left-radius: 28px;
+            border-top-right-radius: 28px;
+            font-size: 0.9rem;
+        }
+
+        /* gráfico simbólico e elementos extras */
+        .infografico {
+            background: #f8fff4;
+            border-radius: 32px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border: 1px solid #c8e6c0;
+        }
+
+        .progress-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            margin: 1.2rem 0;
+        }
+
+        .progress-item {
+            flex: 1;
+            background: #e2f0dd;
+            border-radius: 40px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .btn-pequeno {
+            background: #2e7d46;
+            border: none;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 60px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-pequeno:hover {
+            background: #1e5a36;
+            transform: scale(0.97);
+        }
+
+        hr {
+            margin: 1rem 0;
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #c6e2bb, transparent);
+        }
+
+        @media (max-width: 700px) {
+            .header-moderno h1 {
+                font-size: 1.9rem;
+            }
+            .nav-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+    <script>
+        function showPage(id) {
+            // Oculta todas as páginas
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Ativa a página selecionada
+            const targetPage = document.getElementById(id);
+            if (targetPage) targetPage.classList.add('active');
+            // Rola suavemente para o topo do container (opcional)
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Inicializar na introdução e pequeno efeito de dados dinâmicos
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('introducao');
+            // atualiza contadores pequenos simulando dados (apenas estético)
+            const counters = document.querySelectorAll('.stat-counter');
+            if (counters.length) {
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target')) || 0;
+                    let current = 0;
+                    const step = Math.ceil(target / 30);
+                    const update = () => {
+                        current += step;
+                        if (current >= target) {
+                            counter.innerText = target.toLocaleString();
+                        } else {
+                            counter.innerText = current.toLocaleString();
+                            requestAnimationFrame(update);
+                        }
+                    };
+                    update();
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+
+<header class="header-moderno">
+    <h1>🌱 Educação para o Consumo Consciente</h1>
+    <p>Transforme hábitos, preserve o futuro — sustentabilidade, ética e responsabilidade social em ação</p>
+</header>
+
+<div class="nav-wrapper">
+    <div class="nav-scroll">
+        <button class="nav-btn" onclick="showPage('introducao')">📘 Introdução</button>
+        <button class="nav-btn" onclick="showPage('consumo')">🛒 Consumo Consciente</button>
+        <button class="nav-btn" onclick="showPage('reutilizacao')">🔄 Reutilização</button>
+        <button class="nav-btn" onclick="showPage('reciclagem')">♻️ Reciclagem</button>
+        <button class="nav-btn" onclick="showPage('dicas')">💡 Dicas Práticas</button>
+        <button class="nav-btn" onclick="showPage('conclusao')">🌎 Conclusão</button>
+        <button class="nav-btn" onclick="showPage('referencias')">📚 Referências</button>
+    </div>
+</div>
+
+<div class="container">
+    <!-- INTRODUÇÃO melhorada -->
+    <div id="introducao" class="page">
+        <h2>🌍 Introdução: O poder da escolha consciente</h2>
+        <div class="card-grid">
+            <div class="card-modern">
+                <div class="icon-xl">📉</div>
+                <span class="badge">Dados globais</span>
+                <p>Mais de <span class="stat-number">2,1 bilhões</span> de toneladas de resíduos sólidos são geradas anualmente no mundo. Destas, apenas <strong>13,5%</strong> são recicladas (Banco Mundial).</p>
+                <hr>
+                <p>A educação para o consumo consciente desponta como ferramenta transformadora, reduzindo pegada ecológica e promovendo justiça ambiental.</p>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">🧠</div>
+                <span class="badge">Por que ensinar?</span>
+                <p>Decisões de compra impactam cadeias produtivas, emissões de CO₂, uso de água e trabalho digno. Consumir com consciência gera ciclos positivos.</p>
+                <div class="progress-container" style="margin-top: 1rem;">
+                    <div class="progress-item">🌎 Redução de lixo</div>
+                    <div class="progress-item">💧 Economia hídrica</div>
+                    <div class="progress-item">🌿 Florestas preservadas</div>
+                </div>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">🎯</div>
+                <span class="badge">ODS 12</span>
+                <p><strong>Consumo e produção responsáveis</strong> — meta da ONU até 2030. Cada pequeno gesto soma para um futuro regenerativo.</p>
+                <button class="btn-pequeno" onclick="showPage('dicas')">Ver dicas →</button>
+            </div>
+        </div>
+        <div class="infografico">
+            <p style="font-weight: 600;">📢 Você sabia? Se cada brasileiro reduzisse o desperdício de alimentos em 20%, evitaríamos 3 milhões de toneladas de CO₂ por ano.</p>
+        </div>
+    </div>
+
+    <!-- CONSUMO CONSCIENTE + aprofundamento -->
+    <div id="consumo" class="page">
+        <h2>🛒 Consumo Consciente: repensar, reduzir, responsabilizar</h2>
+        <div class="card-grid">
+            <div class="card-modern">
+                <div class="icon-xl">🤔</div>
+                <span class="badge">Antes de comprar, pergunte-se:</span>
+                <ul class="list-custom">
+                    <li>Realmente preciso disso?</li>
+                    <li>Qual é a origem e impacto ambiental?</li>
+                    <li>Posso compartilhar, alugar ou comprar usado?</li>
+                </ul>
+                <p><strong>Consumismo</strong>: impulsiona extração predatória, geração de lixo eletrônico e emissões de gases estufa.</p>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">📦</div>
+                <span class="badge">Pegada invisível</span>
+                <p>Uma calça jeans consome cerca de <strong>7.500 litros</strong> de água desde o cultivo do algodão até a fabricação. Optar por marcas sustentáveis e prolongar a vida útil das roupas é revolucionário.</p>
+                <div class="progress-item" style="background:#cfe8c5;">♻️ Moda circular + slow fashion</div>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">🏭</div>
+                <span class="badge">Economia circular</span>
+                <p>Empresas e consumidores alinhados reduzem resíduos, projetam produtos duráveis e fomentam o reparo. Consumir menos, mas melhor.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- REUTILIZAÇÃO expandida -->
+    <div id="reutilizacao" class="page">
+        <h2>🔄 Reutilização criativa: do descarte à nova história</h2>
+        <div class="card-grid">
+            <div class="card-modern">
+                <div class="icon-xl">🏺</div>
+                <span class="badge">DIY & Upcycling</span>
+                <p>Transformar potes de vidro em organizadores, pneus em vasos, caixotes em estantes. A reutilização reduz em até 70% o descarte em aterros.</p>
+                <p><strong>Benefícios:</strong> economia financeira, menos extração de matéria-prima e estímulo à criatividade.</p>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">👕</div>
+                <span class="badge">Moda Reuse</span>
+                <p>Brechós, trocas de roupas e customização: prolongam a vida útil das peças. <span class="stat-number" data-target="95">95</span>% das roupas descartadas poderiam ser reaproveitadas.</p>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">📦</div>
+                <span class="badge">Embalagens eternas</span>
+                <p>Sacolas de pano, garrafas reutilizáveis, canudos de aço. Evite plástico de uso único: cada pessoa pode economizar até 200 sacolas por ano.</p>
+            </div>
+        </div>
+        <div class="infografico">
+            <p>✨ <strong>Inspiração sustentável:</strong> Móveis de paletes, brinquedos com material reciclado, cadernos com folhas usadas — pequenas ações geram impacto coletivo.</p>
+        </div>
+    </div>
+
+    <!-- RECICLAGEM com dados importantes -->
+    <div id="reciclagem" class="page">
+        <h2>♻️ Reciclagem: o ciclo virtuoso dos materiais</h2>
+        <div class="card-grid">
+            <div class="card-modern">
+                <div class="icon-xl">🥤</div>
+                <span class="badge">Alumínio ♻️</span>
+                <p>Reciclar latas de alumínio economiza <strong>95%</strong> de energia em comparação com produção primária. O Brasil é referência com 98% de reciclagem de latas.</p>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">📄</div>
+                <span class="badge">Papel & plástico</span>
+                <p>1 tonelada de papel reciclado evita o corte de 15 a 20 árvores. Plástico reciclado reduz consumo de petróleo em até 70%.</p>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">🗑️</div>
+                <span class="badge">Coleta seletiva</span>
+                <p>Separe corretamente: azul (papel), vermelho (plástico), verde (vidro), amarelo (metal) e marrom (orgânico). Evite contaminação dos recicláveis.</p>
+                <button class="btn-pequeno" onclick="showPage('dicas')">Guia prático de separação</button>
+            </div>
+        </div>
+        <div class="infografico">
+            <div class="progress-container">
+                <div class="progress-item">📊 30% dos resíduos poderiam ser reciclados mas vão parar em aterros</div>
+                <div class="progress-item">🏭 Reciclagem gera empregos verdes</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DICAS interativas e completas -->
+    <div id="dicas" class="page">
+        <h2>💡 Dicas práticas para o dia a dia sustentável</h2>
+        <div class="card-grid">
+            <div class="card-modern">
+                <div class="icon-xl">🛍️</div>
+                <span class="badge">Planejamento inteligente</span>
+                <ul class="list-custom">
+                    <li>Faça lista de compras e evite excessos</li>
+                    <li>Prefira produtos a granel e com embalagens retornáveis</li>
+                    <li>Leve ecobags e recuse sacolas plásticas</li>
+                </ul>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">💧⚡</div>
+                <span class="badge">Casa consciente</span>
+                <ul class="list-custom">
+                    <li>Economize água: reúso da água da chuva para plantas</li>
+                    <li>Desligue aparelhos da tomada (modo stand-by consome 8% da energia)</li>
+                    <li>Troque lâmpadas por LED e reduza até 80% no consumo</li>
+                </ul>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">🍎</div>
+                <span class="badge">Combate ao desperdício alimentar</span>
+                <ul class="list-custom">
+                    <li>Aproveite talos, cascas e sementes em receitas criativas</li>
+                    <li>Congele alimentos antes que estraguem</li>
+                    <li>Compre frutas e verduras da estação, mais baratas e com menor pegada</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-modern" style="margin-top: 1rem;">
+            <div class="icon-xl">📱</div>
+            <span class="badge">Apps e tecnologias sustentáveis</span>
+            <p>Use aplicativos de doação de comida, troca de objetos, mapas de coleta seletiva. Digitalize recibos, evite impressões e adote o lixo zero.</p>
+        </div>
+    </div>
+
+    <!-- CONCLUSÃO + inspiração -->
+    <div id="conclusao" class="page">
+        <h2>🌱 Conclusão: O futuro é construído hoje</h2>
+        <div class="card-grid">
+            <div class="card-modern">
+                <div class="icon-xl">🤝</div>
+                <p>Pequenas atitudes diárias — como recusar canudos plásticos, consertar eletrônicos e apoiar negócios sustentáveis — geram transformações sistêmicas.</p>
+                <p>Se cada pessoa adotar pelo menos <strong>três práticas conscientes</strong>, evitamos milhões de toneladas de CO₂ por ano.</p>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">🏫</div>
+                <span class="badge">Papel da educação</span>
+                <p>Escolas, universidades e comunidades devem promover debates, hortas orgânicas, feiras de trocas e campanhas de reciclagem. Consciência se multiplica.</p>
+            </div>
+            <div class="card-modern">
+                <div class="icon-xl">🌟</div>
+                <p><strong>Chamado à ação:</strong> você é agente de mudança. Inspire outras pessoas compartilhando conhecimento. Juntos, rumo a uma economia regenerativa.</p>
+                <button class="btn-pequeno" onclick="showPage('dicas')">Comece agora →</button>
+            </div>
+        </div>
+        <div class="infografico" style="text-align: center;">
+            <span style="font-size: 2rem;">🌿 + ♻️ = 🌎</span>
+            <p>Consumo consciente + reciclagem + reutilização = Planeta vivo para as próximas gerações.</p>
+        </div>
+    </div>
+
+    <!-- REFERÊNCIAS com estilo e fontes confiáveis -->
+    <div id="referencias" class="page">
+        <h2>📚 Referências Bibliográficas & Fontes de Pesquisa</h2>
+        <div class="card-grid">
+            <div class="card-modern">
+                <span class="badge">📖 Instituições</span>
+                <p>BRASIL. Ministério do Meio Ambiente. <em>Consumo Consciente e Sustentabilidade</em>. Brasília, 2023.</p>
+                <p>ONU Meio Ambiente. <em>Objetivos de Desenvolvimento Sustentável – ODS 12</em>. 2025.</p>
+                <p>INSTITUTO AKATU. <em>Educação para o Consumo Consciente: Guia para Educadores</em>. 7ª ed, 2024.</p>
+            </div>
+            <div class="card-modern">
+                <span class="badge">🔬 Dados & pesquisas</span>
+                <p>Banco Mundial. <em>What a Waste 2.0: A Global Snapshot of Solid Waste Management</em>. 2024.</p>
+                <p>ABRELPE. <em>Panorama dos Resíduos Sólidos no Brasil</em>. 2025.</p>
+                <p>Ellen MacArthur Foundation. <em>Economia Circular: Oportunidades para o Brasil</em>. 2024.</p>
+            </div>
+            <div class="card-modern">
+                <span class="badge">🌐 Normas e portais</span>
+                <p>ABNT NBR ISO 14001: Sistemas de gestão ambiental.</p>
+                <p>Portal eCycle – consumo sustentável e reciclagem.</p>
+                <p>Plataforma Lixo Zero Brasil – Certificação e boas práticas.</p>
+            </div>
+        </div>
+        <div class="infografico" style="margin-top: 1rem;">
+            <p>📌 Trabalho escolar desenvolvido sob orientação de práticas sustentáveis e responsabilidade social. Conteúdo revisado e alinhado à Base Nacional Comum Curricular (BNCC).</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 – Projeto Educacional | Educação para o Consumo Consciente 🌱</p>
+    <p style="margin-top: 0.6rem; font-size:0.8rem;">Sustentabilidade, inovação social e cidadania planetária — pequenos gestos, grandes transformações.</p>
+</footer>
+
+</body>
+</html>
